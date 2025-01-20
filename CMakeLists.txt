@@ -1,0 +1,33 @@
+cmake_minimum_required(VERSION 3.28 FATAL_ERROR)
+
+set(CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD 23) # C++23 Project
+
+# Version
+set(VERSION_MAJOR 0)
+set(VERSION_MINOR 0)
+set(VERSION_PATCH 1)
+
+project(solar_simulator
+        VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}
+        DESCRIPTION "Solar simulator"
+        LANGUAGES CXX)
+
+# Set output directory
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
+
+# clang tidy setup
+#if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
+#   set(CMAKE_CXX_CLANG_TIDY clang-tidy)
+#   set(CMAKE_CXX_CLANG_TIDY_EXPORT_FIXES_DIR clang-tidy)
+#endif()
+
+# Create executable
+set(SOURCES "main.cpp")
+add_executable(solar_simulator ${SOURCES})
+#target_include_directories(solar_simulator PUBLIC ${CMAKE_SOURCE_DIR}/todo)

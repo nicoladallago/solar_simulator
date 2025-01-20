@@ -1,0 +1,6 @@
+/.idea
+/.vs
+/build
+/cov_rep
+/cov.xml
+/CMakeUserPresets.json

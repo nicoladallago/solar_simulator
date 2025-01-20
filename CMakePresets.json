@@ -1,0 +1,151 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "Default-Linux",
+      "hidden": true,
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "g++"
+      },
+      "environment": {
+        "LINUX_COMPILER_WARNINGS": "-pedantic -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough"
+      }
+    },
+    {
+      "name": "Default-Linux-Clang",
+      "hidden": true,
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang++"
+      },
+      "environment": {
+        "LINUX_CLANG_COMPILER_WARNINGS": "-pedantic -Wall -Wextra -Wshadow -Wnon-virtual-dtor -Wold-style-cast -Wcast-align -Wunused -Woverloaded-virtual -Wpedantic -Wconversion -Wsign-conversion -Wdouble-promotion -Wformat=2 -Wimplicit-fallthrough"
+      }
+    },
+    {
+      "name": "Debug-Linux",
+      "inherits": "Default-Linux",
+      "displayName": "Debug-Linux",
+      "binaryDir": "${sourceDir}/build/debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS": "$env{LINUX_COMPILER_WARNINGS} -g"
+      }
+    },
+    {
+      "name": "Release-Linux",
+      "inherits": "Default-Linux",
+      "displayName": "Release-Linux",
+      "binaryDir": "${sourceDir}/build/release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS": "$env{LINUX_COMPILER_WARNINGS} -O3"
+      }
+    },
+    {
+      "name": "Debug-Linux-Test",
+      "inherits": "Debug-Linux",
+      "displayName": "Debug-Linux-Test",
+      "binaryDir": "${sourceDir}/build/debug-test",
+      "cacheVariables": {
+        "ENABLE_TESTS": "ON",
+        "CMAKE_CXX_FLAGS": "--coverage -g"
+      }
+    },
+    {
+      "name": "Release-Linux-Test",
+      "inherits": "Release-Linux",
+      "displayName": "Release-Linux-Test",
+      "binaryDir": "${sourceDir}/build/release-test",
+      "cacheVariables": {
+        "ENABLE_TESTS": "ON",
+        "CMAKE_CXX_FLAGS": "--coverage -g"
+      }
+    },
+    {
+      "name": "Debug-Linux-Clang",
+      "inherits": "Default-Linux-Clang",
+      "displayName": "Debug-Linux-Clang",
+      "binaryDir": "${sourceDir}/build/debug-clang",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS": "$env{LINUX_CLANG_COMPILER_WARNINGS} -g"
+      }
+    },
+    {
+      "name": "Release-Linux-Clang",
+      "inherits": "Default-Linux-Clang",
+      "displayName": "Release-Linux-Clang",
+      "binaryDir": "${sourceDir}/build/release-clang",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS": "$env{LINUX_CLANG_COMPILER_WARNINGS} -O3 -fsave-optimization-record"
+      }
+    },
+    {
+      "name": "Debug-Linux-Clang-Test",
+      "inherits": "Debug-Linux-Clang",
+      "displayName": "Debug-Linux-Clang-Test",
+      "binaryDir": "${sourceDir}/build/debug-clang-test",
+      "cacheVariables": {
+        "ENABLE_TESTS": "ON",
+        "CMAKE_CXX_FLAGS": "$env{LINUX_CLANG_COMPILER_WARNINGS} -g --coverage"
+      }
+    },
+    {
+      "name": "Release-Linux-Clang-Test",
+      "inherits": "Release-Linux-Clang",
+      "displayName": "Release-Linux-Clang-Test",
+      "binaryDir": "${sourceDir}/build/release-clang-test",
+      "cacheVariables": {
+        "ENABLE_TESTS": "ON",
+        "CMAKE_CXX_FLAGS": "$env{LINUX_CLANG_COMPILER_WARNINGS} -g --coverage"
+      }
+    },
+    {
+      "name": "Linux-Clang-ASAN",
+      "inherits": "Default-Linux-Clang",
+      "displayName": "Linux-Clang-ASAN",
+      "binaryDir": "${sourceDir}/build/clang-ASAN",
+      "cacheVariables": {
+        "ENABLE_TESTS": "ON",
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS": "-O1 -g -fsanitize=address -fno-omit-frame-pointer"
+      }
+    },
+    {
+      "name": "Linux-Clang-UBSAN",
+      "inherits": "Default-Linux-Clang",
+      "displayName": "Linux-Clang-UBSAN",
+      "binaryDir": "${sourceDir}/build/clang-UBSAN",
+      "cacheVariables": {
+        "ENABLE_TESTS": "ON",
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS": "-fsanitize=undefined"
+      }
+    },
+    {
+      "name": "Linux-Clang-threadsanitizer",
+      "inherits": "Default-Linux-Clang",
+      "displayName": "Linux-Clang-threadsanitizer",
+      "binaryDir": "${sourceDir}/build/clang-threadsanitizer",
+      "cacheVariables": {
+        "ENABLE_TESTS": "ON",
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS": "-fsanitize=thread -g -O1"
+      }
+    },
+    {
+      "name": "Linux-Clang-memorysanitizer",
+      "inherits": "Default-Linux-Clang",
+      "displayName": "Linux-Clang-memorysanitizer",
+      "binaryDir": "${sourceDir}/build/clang-memorysanitizer",
+      "cacheVariables": {
+        "ENABLE_TESTS": "ON",
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS": "-fsanitize=memory -fno-omit-frame-pointer -g -O2"
+      }
+    }
+  ]
+}
